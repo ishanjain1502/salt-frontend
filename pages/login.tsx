@@ -1,8 +1,8 @@
 import React from 'react'
 import { useState,useEffect } from 'react'
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import {API_URL} from '../utils/utils';
+import Link from 'next/link'
+import styles from '../styles/Home.module.css'
 
 type Props = {}
 
@@ -19,6 +19,7 @@ const login = (props: Props) => {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
+                "Access-Control-Allow-Origin": "*",
 			},
 			body: JSON.stringify({
 				email,
@@ -48,7 +49,7 @@ const login = (props: Props) => {
     <div>
         <div className="login-con">
             <form id="loginForm" onSubmit={loginUser}>
-                <h1 className="login-head">Login-Form</h1><br /><br />
+                <h1 className="login-head">Login-Form</h1><br />
                 <input
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -64,6 +65,11 @@ const login = (props: Props) => {
                 />
                 <br /><br />
                 <input type="submit" value="Login" />
+                <br/>
+                <p className={styles.link} >
+                <Link href="/register">New here?</Link>
+                </p>
+                
             </form>
         </div>
         <div>

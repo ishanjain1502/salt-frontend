@@ -2,6 +2,9 @@ import React , {useState, useEffect} from 'react'
 import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {API_URL} from '../utils/utils'
+import Link from 'next/link'
+import styles from '../styles/Home.module.css'
+
 
 type Props = {}
 
@@ -26,6 +29,7 @@ const register = (props: Props) => {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
+                "Access-Control-Allow-Origin": "*",
 			},
 			body: JSON.stringify({
 				username,
@@ -40,7 +44,7 @@ const register = (props: Props) => {
 		if (data.message ===  "user created successfully") {
             setMessage("User Created SUccessfully");
             
-            // window.location.href = '/login'
+            window.location.href = '/login'
 
 		}else if(data.message === "Username already exists"){
             setMessage("username already exists");
@@ -64,13 +68,15 @@ const register = (props: Props) => {
 
         <form id="reg-form" onSubmit={registerUser}>
             <h1>Register</h1>
+            <p>Username</p>
             <input
                 value={username}
                 onChange={(e) => setName(e.target.value)}
                 type="text"
-                placeholder="Think of a unique userName"
+                placeholder="unique userName"
             />
             <br /><br />
+            <p>Email</p>
             <input
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -78,6 +84,7 @@ const register = (props: Props) => {
                 placeholder="Email"
             />
             <br /><br />
+            <p>Password</p>
             <input
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -85,14 +92,19 @@ const register = (props: Props) => {
                 placeholder="Password"
             />
             <br /><br />
+            <p>Comfirm-Password</p>
             <input
                 value={comfirm}
                 onChange={(e) => setComfirm(e.target.value)}
                 type="password"
-                placeholder="Password"
+                placeholder="Comfirm-Password"
             />
             <br /><br />
             <input type="submit" value="Register" />
+            <br/>
+            <p className={styles.link} >
+            <Link href="/login">Already a user?</Link>
+            </p>
         </form>
         </div>
         <div>

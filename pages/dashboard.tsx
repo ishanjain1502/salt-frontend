@@ -1,5 +1,6 @@
 import React , {useState, useEffect} from 'react';
 import jwt from 'jsonwebtoken'
+import styles from '../styles/Home.module.css'
 
 type Props = {}
 
@@ -27,7 +28,7 @@ const dashboard = (props: Props) => {
 	}
 
   return (
-    <div>Welcome {name} </div>
+    <div>Welcome <p className={styles.title} >{name}</p> </div>
   )
 }
 

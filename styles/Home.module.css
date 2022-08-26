@@ -127,3 +127,10 @@
     filter: invert(1);
   }
 }
+
+.link:hover,
+.link:focus,
+.link:active {
+  color: #0070f3;
+  border-color: #0070f3;
+}
