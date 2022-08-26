@@ -2,19 +2,20 @@ import React from 'react'
 import { useState,useEffect } from 'react'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {API_URL} from '../utils/utils';
 
 type Props = {}
 
 const login = (props: Props) => {
     const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-
+    const [message, setMessage] = useState("")
 
 
     async function loginUser(event:any) {
 		event.preventDefault()
 
-		const response = await fetch(`http://localhost:1337/api/v1/signin`, {
+		const response = await fetch(`${API_URL}/api/v1/signin`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -34,10 +35,14 @@ const login = (props: Props) => {
 			alert('Login successful')
 			window.location.href = '/dashboard'
 		} else {
-			alert('Please check your username and password')
+			// alert('Please check your username and password')
+            setMessage("Please check your username and password")
 		}
 	}
 
+    useEffect(() =>{
+
+    }, [message])
 
   return (
     <div>
@@ -60,6 +65,9 @@ const login = (props: Props) => {
                 <br /><br />
                 <input type="submit" value="Login" />
             </form>
+        </div>
+        <div>
+            {message}
         </div>
     </div>
   )

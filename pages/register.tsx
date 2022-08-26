@@ -1,13 +1,18 @@
 import React , {useState, useEffect} from 'react'
+import {toast, ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import {API_URL} from '../utils/utils'
 
 type Props = {}
 
 const register = (props: Props) => {
 
+
     const [username, setName] = useState('')
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
     const [comfirm, setComfirm] = useState("")
+    const [message, setMessage] = useState("");
 
 	async function registerUser(event:any) {
 		event.preventDefault()
@@ -17,7 +22,7 @@ const register = (props: Props) => {
             return;
         }
 
-		const response = await fetch(`http://localhost:1337/api/v1/signup`, {
+		const response = await fetch(`${API_URL}/api/v1/signup`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -30,15 +35,25 @@ const register = (props: Props) => {
 		})
 
 		const data = await response.json()
-
+        console.log(data);
+        
 		if (data.message ===  "user created successfully") {
-            window.location.href = '/login'
-		}else{
-            console.log("BS");
+            setMessage("User Created SUccessfully");
             
-        }
+            // window.location.href = '/login'
+
+		}else if(data.message === "Username already exists"){
+            setMessage("username already exists");
+        
+        }else if(data.message === "Email already exists"){
+            setMessage("Email already exists");
+            
+        }   
 	}
 
+    useEffect(() =>{
+
+    }, [message])
 
 
   return (
@@ -53,7 +68,7 @@ const register = (props: Props) => {
                 value={username}
                 onChange={(e) => setName(e.target.value)}
                 type="text"
-                placeholder="Name"
+                placeholder="Think of a unique userName"
             />
             <br /><br />
             <input
@@ -80,7 +95,9 @@ const register = (props: Props) => {
             <input type="submit" value="Register" />
         </form>
         </div>
-
+        <div>
+            {message}
+        </div>
     </div>
   )
 }
