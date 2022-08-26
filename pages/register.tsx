@@ -8,7 +8,7 @@ import styles from '../styles/Home.module.css'
 
 type Props = {}
 
-const register = (props: Props) => {
+const Register = (props: Props) => {
 
 
     const [username, setName] = useState('')
@@ -114,4 +114,4 @@ const register = (props: Props) => {
   )
 }
 
-export default register
+export default Register

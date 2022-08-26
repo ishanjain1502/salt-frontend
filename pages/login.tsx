@@ -6,7 +6,7 @@ import styles from '../styles/Home.module.css'
 
 type Props = {}
 
-const login = (props: Props) => {
+const Login = (props: Props) => {
     const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
     const [message, setMessage] = useState("")
@@ -79,4 +79,4 @@ const login = (props: Props) => {
   )
 }
 
-export default login
+export default Login

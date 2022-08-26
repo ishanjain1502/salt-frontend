@@ -2,9 +2,9 @@ import React , {useState, useEffect} from 'react';
 import jwt from 'jsonwebtoken'
 import styles from '../styles/Home.module.css'
 
+type Props = {}
 
-
-const dashboard = () => {
+const Dashboard = (props: Props) => {
     // const name = window.localStorage.getItem('username')
     const [usename, setName] = useState("")
 
@@ -32,5 +32,5 @@ const dashboard = () => {
   )
 }
 
-export default dashboard
+export default Dashboard
 
